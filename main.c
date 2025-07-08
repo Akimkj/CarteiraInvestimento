@@ -3,14 +3,15 @@
 #include <string.h>
 
 typedef struct {
-    char id;
+    char id[2];
     float custo;
     float retorno;
 }Acao;
 
 int menu();
 float getAvailableCapital(char f[]);
-
+int getQuantAcoes(char f[]);
+void readActions(char f[], Acao *acoes);
 
 int main() {
     int opcao = menu();
@@ -23,11 +24,21 @@ int main() {
         default: printf("Erro: o Valor precisa ser entre 1 e 4."); return -1;
     }
 
-
     float availableCapital = getAvailableCapital(fileName);
-    
-    printf("%.2f", availableCapital);
+    int quantAcoes = getQuantAcoes(fileName);
+    Acao *acoes = (Acao *) malloc(quantAcoes * sizeof(Acao));
+    if (acoes == NULL) {
+        printf("Erro ao alocar memória para as acoes.");
+        return -1;
+    }
 
+    readActions(fileName,acoes);
+
+    for (int i = 0; i < quantAcoes; i++) {
+        printf("Id: %s\tCusto: %.2f\tRetorno: %.2f\t\n", acoes[i].id, acoes[i].custo, acoes[i].retorno);
+    }
+
+    free(acoes);
     return 0;
 }
 
@@ -58,6 +69,51 @@ float getAvailableCapital(char f[]) {
     }
 
     fclose(file);
-    free(file);
     return avCap;
+}
+int getQuantAcoes(char f[]) {
+    FILE *file = fopen(f, "r");
+    if (file == NULL) {
+        printf("Erro3 ao abrir o arquivo.");
+        return -1;
+    }
+
+    int count = 0;
+    char linha[400];
+    Acao acoes_temp[50];
+
+    while (fgets(linha, sizeof(linha), file)) {
+
+        if (linha[0] == '#' || linha[0] == '*' || strlen(linha) <= 1) {
+            continue;
+        }
+
+        if(sscanf(linha, "%s %f %f", &acoes_temp[count].id, &acoes_temp[count].custo, &acoes_temp[count].retorno) == 3) {
+            count++;
+        }
+    }
+    fclose(file);
+    return count;
+}
+void readActions(char f[], Acao *acoes) {
+    FILE *file = fopen(f, "r");
+    if (file == NULL) {
+        printf("Erro ao abrir arquivo para ler acoes.");
+        return;
+    }
+
+    char linha[300];
+    int count = 0;
+
+    while(fgets(linha, sizeof(linha), file)) {
+        if (linha[0] == '#' || linha[0] == '*' || strlen(linha) <= 1) {
+            continue;
+        }
+
+        if (sscanf(linha, "%s %f %f", &acoes[count].id, &acoes[count].custo, &acoes[count].retorno) == 3) {
+            count++;
+        }
+    }
+
+    fclose(file);
 }

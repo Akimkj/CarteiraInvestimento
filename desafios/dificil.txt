@@ -1,4 +1,4 @@
-﻿* # Estratégia: Carteira Global Otimizada
+* # Estratégia: Carteira Global Otimizada
 # Formato: ID Custo_Acao(R$) Retorno_Anual(%) Ticker_Acao
 CAPITAL_DISPONIVEL_R$: 65000.00
 ACOES:

@@ -1,10 +1,10 @@
 #include <string.h>
 #include "interface.h"
-#define TAM_MAX_LINHA 400
+const int TAM_MAX_LINHA = 400;
 
 int menu() {
     int op = 0;
-    printf("Escolha uma das opcões: \n");
+    imprime("Escolha uma das opcões: \n");
     printf("\t1 - Carteira iniciante.\n");
     printf("\t2 - Carteira moderada.\n");
     printf("\t3 - Carteira dificil.\n");
@@ -24,7 +24,7 @@ float getAvailableCapital(char f[]) {
         } 
     }
     else {
-        printf("Erro ao abrir o arquivo para pegar o capital disponivel.");
+        printf("Erro ao abrir o arquivo para pegar o capital disponivel.\n");
         return -1;
     }
     
@@ -34,7 +34,7 @@ float getAvailableCapital(char f[]) {
 int getQuantAcoes(char f[]) {
     FILE *file = fopen(f, "r");
     if (file == NULL) {
-        printf("Erro3 ao abrir o arquivo.");
+        printf("Erro ao abrir o arquivo para pegar quantidade de acoes\n.");
         return -1;
     }
 
@@ -93,21 +93,34 @@ int compararEficiencia(const void *a, const void *b) {
     }
 }
 
+void eficienceCalculeAndCopy(Acao* acoes, Acao* copia, int indice,int totalAcoes) {
+    if (indice >= totalAcoes) {
+        return;
+    }
+
+    copia[indice].custo = acoes[indice].custo;
+    copia[indice].retorno = acoes[indice].retorno;
+    if (acoes[indice].custo > 0) {
+        copia[indice].eficiencia = acoes[indice].retorno / acoes[indice].custo;
+    }
+    else {
+        copia[indice].eficiencia = 0;
+    }
+    strcpy(copia[indice].id, acoes[indice].id);
+
+    eficienceCalculeAndCopy(acoes, copia, indice + 1, totalAcoes);
+}
+
 void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel) {
     Acao *lista = malloc(quantAcoes * sizeof(Acao));
     if (lista == NULL) {
         printf("Erro ao alocar memoria em stockPicking!");
         return;
     }
-    // Copia e calcula eficiência
-    for (int i = 0; i < quantAcoes; i++) {
-        lista[i].custo = acoes[i].custo;
-        lista[i].retorno = acoes[i].retorno;
-        lista[i].eficiencia = acoes[i].retorno / acoes[i].custo;
-        strcpy(lista[i].id, acoes[i].id);
-    }
+    
+    eficienceCalculeAndCopy(acoes, lista, 0, quantAcoes);
 
-    // Ordena por eficiência decrescente
+    
     qsort(lista, quantAcoes, sizeof(Acao), compararEficiencia);
 
     float custo_total = 0.0;

@@ -14,7 +14,15 @@ int main() {
     }
 
     float availableCapital = getAvailableCapital(fileName);
+    if (availableCapital == -1) {
+        return -1;
+    }
+
     int quantAcoes = getQuantAcoes(fileName);
+    if (quantAcoes == -1) {
+        return -1;
+    }
+    
     Acao *acoes = (Acao *) malloc(quantAcoes * sizeof(Acao));
     if (acoes == NULL) {
         printf("Erro ao alocar memória para as acoes.");

@@ -17,8 +17,8 @@ int menu();
 float getAvailableCapital(char f[]);
 int getQuantAcoes(char f[]);
 void readActions(char f[], Acao *acoes);
-int compararEficiencia(const void *a, const void *b);
 void eficienceCalculeAndCopy(Acao* acoes, Acao* copia, int indice,int totalAcoes);
-void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel);
+void bSort(Acao* lista, int quantAcoes);
+void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel); 
 
 #endif

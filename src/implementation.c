@@ -4,7 +4,7 @@ const int TAM_MAX_LINHA = 400;
 
 int menu() {
     int op = 0;
-    imprime("Escolha uma das opcões: \n");
+    printf("Escolha uma das opcoes: \n");
     printf("\t1 - Carteira iniciante.\n");
     printf("\t2 - Carteira moderada.\n");
     printf("\t3 - Carteira dificil.\n");
@@ -12,6 +12,7 @@ int menu() {
     scanf("%d", &op);
     return op;
 }
+
 float getAvailableCapital(char f[]) {
     FILE *file = fopen(f, "r");
     float avCap = 0;
@@ -31,6 +32,7 @@ float getAvailableCapital(char f[]) {
     fclose(file);
     return avCap;
 }
+
 int getQuantAcoes(char f[]) {
     FILE *file = fopen(f, "r");
     if (file == NULL) {
@@ -55,6 +57,7 @@ int getQuantAcoes(char f[]) {
     fclose(file);
     return count;
 }
+
 void readActions(char f[], Acao *acoes) {
     FILE *file = fopen(f, "r");
     if (file == NULL) {
@@ -78,18 +81,15 @@ void readActions(char f[], Acao *acoes) {
     fclose(file);
 }
 
-
-int compararEficiencia(const void *a, const void *b) {
-    Acao *x = (Acao*)a;
-    Acao *y = (Acao*)b;
-    if ((*y).eficiencia > (*x).eficiencia){
-        return 1;
-    } 
-    else if ((*y).eficiencia < (*x).eficiencia) {
-        return -1;
-    } 
-    else {
-        return 0;
+void bSort(Acao* lista, int quantAcoes) {
+    for (int i = 0; i < quantAcoes; i++) {
+        for (int j = 0; j < quantAcoes - 1 - i; j++) {
+            if (lista[j].eficiencia < lista[j+1].eficiencia) {
+                float temp = lista[j].eficiencia;
+                lista[j].eficiencia = lista[j+1].eficiencia;
+                lista[j+1].eficiencia = temp;
+            }  
+        }
     }
 }
 
@@ -120,8 +120,7 @@ void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel) {
     
     eficienceCalculeAndCopy(acoes, lista, 0, quantAcoes);
 
-    
-    qsort(lista, quantAcoes, sizeof(Acao), compararEficiencia);
+    bSort(lista, quantAcoes);
 
     float custo_total = 0.0;
     float retorno_total = 0.0;

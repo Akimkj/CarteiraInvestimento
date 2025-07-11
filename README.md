@@ -4,7 +4,7 @@ Um programa que recebe um arquivo de texto como entrada e retorna a melhor combi
 Este projeto foi desenvolvido como a terceira avaliação prática da disciplina de Linguagem de Programação I. Consiste em um sistema de simulação de carteiras de investimento, que lê um arquivo de texto com dados de ações e, com base no capital disponível, seleciona automaticamente a combinação mais eficiente de ações para maximizar o retorno. A implementação foi feita em linguagem C, com uso de estruturas, modularização e manipulação de arquivos.
 
 # Instrução de Instalação
-1. É necessário ter um compilador C instalado. (preferencia vs code)
+1. É necessário ter um compilador C instalado (Preferência vs code)
 
 2. Git (para clonar o repositório)
 

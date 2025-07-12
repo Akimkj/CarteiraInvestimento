@@ -17,7 +17,7 @@ git clone https://github.com/Akimkj/CarteiraInvestimento.git
 
 ## Compilar o projeto
 ````bash
-gcc *.c -o ./output/main.exe
+gcc ./src/*.c -o ./output/main.exe
 
 ````
 ## Compilar o projeto
@@ -51,8 +51,8 @@ Explicação dos campos:
 | Função                 | Tipo de uso        | Descrição                                                                    |
 | ---------------------- | ------------------ | ---------------------------------------------------------------------------- |
 | `getQuantAcoes()`      | Leitura            | Conta quantas ações estão no arquivo, preenchendo temporariamente a struct.  |
-| `readActions()`        | Leitura            | Lê os dados do arquivo e preenche um vetor de structs `Acao`.                |
-| `compararEficiencia()` | Comparação         | Compara duas ações com base na eficiência, usada para ordenação (`qsort`).   |
+| `readActions()`        | Leitura            | Lê os dados do arquivo e preenche um vetor de structs `acoes`.               |
+| `bSort()`              | Ordenação          | Ordena a cópia do vetor de structs `acoes` em ordem da eficiencia da ação.   |
 | `stockPicking()`       | Processamento      | Calcula e escolhe a melhor combinação de ações dentro do capital disponível. |
 | `main()`               | Alocação e chamada | Cria dinamicamente o vetor de `Acao` e chama as funções que usam a struct.   |
 
@@ -63,6 +63,6 @@ Explicação dos campos:
 2. O programa lê o arquivo correspondente.
 3. Obtém o capital disponível e a lista de ações.
 4. Calcula a eficiência (retorno / custo) de cada ação.
-5. Ordena as ações por eficiência usando `qsort()`.
+5. Ordena as ações por eficiência usando algoritmo de Bubble Sort com a função `bSort()`.
 6. Seleciona automaticamente as melhores ações dentro do orçamento.
 7. Exibe a carteira final, com custo total e retorno estimado.

@@ -100,12 +100,9 @@ void eficienceCalculeAndCopy(Acao* acoes, Acao* copia, int indice,int totalAcoes
 
     copia[indice].custo = acoes[indice].custo;
     copia[indice].retorno = acoes[indice].retorno;
-    if (acoes[indice].custo > 0) {
-        copia[indice].eficiencia = acoes[indice].retorno / acoes[indice].custo;
-    }
-    else {
-        copia[indice].eficiencia = 0;
-    }
+    
+    copia[indice].eficiencia = acoes[indice].eficiencia > 0 ? acoes[indice].retorno / acoes[indice].custo : 0;
+
     strcpy(copia[indice].id, acoes[indice].id);
 
     eficienceCalculeAndCopy(acoes, copia, indice + 1, totalAcoes);

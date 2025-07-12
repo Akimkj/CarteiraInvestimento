@@ -50,7 +50,7 @@ int getQuantAcoes(char f[]) {
             continue;
         }
 
-        if(sscanf(linha, "%2s %f %f", acoes_temp[count].id, &acoes_temp[count].custo, &acoes_temp[count].retorno) == 3) {
+        if(sscanf(linha, "%2s %lf %lf", acoes_temp[count].id, &acoes_temp[count].custo, &acoes_temp[count].retorno) == 3) {
             count++;
         }
     }
@@ -73,7 +73,7 @@ void readActions(char f[], Acao *acoes) {
             continue;
         }
 
-        if (sscanf(linha, "%2s %f %f", acoes[count].id, &acoes[count].custo, &acoes[count].retorno) == 3) {
+        if (sscanf(linha, "%2s %lf %lf", acoes[count].id, &acoes[count].custo, &acoes[count].retorno) == 3) {
             count++;
         }
     }
@@ -135,7 +135,7 @@ void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel) {
     printf("Acoes a comprar:\n");
     for (int i = 0; i < quantAcoes; i++) {
         if (lista[i].custo <= capital_restante) {
-            printf("- Acao: %2s (Custo: R$ %.2f, Retorno: %.2f%%)\n", lista[i].id, lista[i].custo, lista[i].retorno);
+            printf("- Acao: %2s (Custo: R$ %.2lf, Retorno: %.2lf%%)\n", lista[i].id, lista[i].custo, lista[i].retorno);
             capital_restante -= lista[i].custo;
             custo_total += lista[i].custo;
             retorno_total += lista[i].retorno;

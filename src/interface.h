@@ -8,9 +8,9 @@
 
 typedef struct {
     char id[2];
-    float custo;
-    float retorno;
-    float eficiencia;
+    double custo;
+    double retorno;
+    double eficiencia;
 }Acao;
 
 int menu();

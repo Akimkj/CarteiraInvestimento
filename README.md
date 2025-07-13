@@ -33,18 +33,18 @@ Importante Certifique-se de que a pasta desafios esteja no mesmo diretório do e
 ````c
 typedef struct {
     char id[2];
-    float custo;
-    float retorno;
-    float eficiencia;
+    double custo;
+    double retorno;
+    double eficiencia;
 } Acao;
 ````
 Explicação dos campos:
 | Campo        | Tipo      | Descrição                                                               |
 | ------------ | --------- | ----------------------------------------------------------------------- |
 | `id`         | `char[2]` | Identificador da ação (ex: "A1", "B2"). Representa de forma compacta.   |
-| `custo`      | `float`   | Valor da ação em reais (R\$).                                           |
-| `retorno`    | `float`   | Retorno estimado da ação, em percentual.                                |
-| `eficiencia` | `float`   | Razão entre retorno e custo (`retorno / custo`). Usada para otimização. |
+| `custo`      | `double`  | Valor da ação em reais (R\$).                                           |
+| `retorno`    | `double`  | Retorno estimado da ação, em percentual.                                |
+| `eficiencia` | `double`  | Razão entre retorno e custo (`retorno / custo`). Usada para otimização. |
 
 ## Funções que usam a struct `Acao`
 

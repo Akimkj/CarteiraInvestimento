@@ -6,10 +6,10 @@ int main() {
     int opcao = menu();
     char fileName[100];
     switch (opcao) {
-        case(1): strcpy(fileName, "desafios\\iniciante.txt"); break;
-        case(2): strcpy(fileName, "desafios\\moderado.txt"); break;
-        case(3): strcpy(fileName, "desafios\\dificil.txt"); break;
-        case(4): strcpy(fileName, "desafios\\expert.txt"); break;
+        case(1): strcpy(fileName, ".\\desafios\\iniciante.txt"); break;
+        case(2): strcpy(fileName, ".\\desafios\\moderado.txt"); break;
+        case(3): strcpy(fileName, ".\\desafios\\dificil.txt"); break;
+        case(4): strcpy(fileName, ".\\desafios\\expert.txt"); break;
         default: printf("Erro: o Valor precisa ser entre 1 e 4."); return -1;
     }
 
@@ -29,7 +29,7 @@ int main() {
         return -1;
     }
 
-    readActions(fileName,acoes);
+    readActions(fileName,acoes, quantAcoes);
 
     stockPicking(acoes, quantAcoes, availableCapital);
 

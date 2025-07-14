@@ -16,7 +16,7 @@ typedef struct {
 int menu();
 float getAvailableCapital(char f[]);
 int getQuantAcoes(char f[]);
-void readActions(char f[], Acao *acoes);
+void readActions(char f[], Acao *acoes, int quantAcoes);
 void eficienceCalculeAndCopy(Acao* acoes, Acao* copia, int indice,int totalAcoes);
 void bSort(Acao* lista, int quantAcoes);
 void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel); 

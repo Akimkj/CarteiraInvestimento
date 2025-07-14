@@ -42,7 +42,7 @@ int getQuantAcoes(char f[]) {
 
     int count = 0;
     char linha[TAM_MAX_LINHA];
-    Acao acoes_temp[50];
+    Acao acoes_temp[60];
 
     while (fgets(linha, sizeof(linha), file)) {
 
@@ -58,7 +58,7 @@ int getQuantAcoes(char f[]) {
     return count;
 }
 
-void readActions(char f[], Acao *acoes) {
+void readActions(char f[], Acao *acoes, int quantAcoes) {
     FILE *file = fopen(f, "r");
     if (file == NULL) {
         printf("Erro ao abrir arquivo para ler acoes.");
@@ -73,6 +73,9 @@ void readActions(char f[], Acao *acoes) {
             continue;
         }
 
+        if (count >= quantAcoes) {
+            break;
+        }
         if (sscanf(linha, "%2s %lf %lf", acoes[count].id, &acoes[count].custo, &acoes[count].retorno) == 3) {
             count++;
         }
@@ -108,7 +111,7 @@ void eficienceCalculeAndCopy(Acao* acoes, Acao* copia, int indice,int totalAcoes
     eficienceCalculeAndCopy(acoes, copia, indice + 1, totalAcoes);
 }
 
-void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel) {
+void stockPicking(Acao *acoes, int quantAcoes, float capitalDisponivel) { 
     Acao *lista = malloc(quantAcoes * sizeof(Acao));
     if (lista == NULL) {
         printf("Erro ao alocar memoria em stockPicking!");

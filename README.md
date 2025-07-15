@@ -66,3 +66,7 @@ Explicação dos campos:
 5. Ordena as ações por eficiência usando algoritmo de Bubble Sort com a função `bSort()`.
 6. Seleciona automaticamente as melhores ações dentro do orçamento.
 7. Exibe a carteira final, com custo total e retorno estimado.
+
+## Autores
+
+Este trabalho foi desenvolvido por Ana Luiza Ribeiro, Gabriel Serra Bastos e Mika Marques Dos Santos Júnior.

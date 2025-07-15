@@ -88,9 +88,9 @@ void bSort(Acao* lista, int quantAcoes) {
     for (int i = 0; i < quantAcoes; i++) {
         for (int j = 0; j < quantAcoes - 1 - i; j++) {
             if (lista[j].eficiencia < lista[j+1].eficiencia) {
-                float temp = lista[j].eficiencia;
-                lista[j].eficiencia = lista[j+1].eficiencia;
-                lista[j+1].eficiencia = temp;
+                Acao temp = lista[j];
+                lista[j] = lista[j+1];
+                lista[j+1] = temp;
             }  
         }
     }
@@ -104,7 +104,7 @@ void eficienceCalculeAndCopy(Acao* acoes, Acao* copia, int indice,int totalAcoes
     copia[indice].custo = acoes[indice].custo;
     copia[indice].retorno = acoes[indice].retorno;
     
-    copia[indice].eficiencia = acoes[indice].eficiencia > 0 ? acoes[indice].retorno / acoes[indice].custo : 0;
+    copia[indice].eficiencia = acoes[indice].custo > 0 ? acoes[indice].retorno / acoes[indice].custo : 0;
 
     strcpy(copia[indice].id, acoes[indice].id);
 

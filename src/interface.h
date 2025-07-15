@@ -7,7 +7,7 @@
 
 
 typedef struct {
-    char id[2];
+    char id[3];
     double custo;
     double retorno;
     double eficiencia;

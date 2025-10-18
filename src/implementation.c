@@ -16,7 +16,7 @@ int menu() {
 float getAvailableCapital(char f[]) {
     FILE *file = fopen(f, "r");
     float avCap = 0;
-    if (file) {
+    if (file != NULL) {
         char linha[TAM_MAX_LINHA];
         while (fgets(linha, sizeof(linha), file)) {
             if(sscanf(linha, "CAPITAL_DISPONIVEL_R$: %f", &avCap)) {
